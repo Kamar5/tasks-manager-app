@@ -1,21 +1,21 @@
 import React from "react";
 import { Panel } from "react-bootstrap";
 
-function handleClick(data, handleTaskClick) {
-  return handleTaskClick(data);
+function handleClick(data, updateCurrentSelectedTaskClick) {
+  return updateCurrentSelectedTaskClick(data);
 }
 
-function task(task, handleTaskClick) {
+function task(task, updateCurrentSelectedTaskClick) {
   return task.map(function(value, index) {
     return (
-      <Panel onClick={() => handleClick(value, handleTaskClick)} key={index}>
+      <Panel onClick={() => handleClick(value, updateCurrentSelectedTaskClick)} key={index}>
         <Panel.Body>{value.title}</Panel.Body>
       </Panel>
     );
   });
 }
 
-export default function GroupList({ data, handleTaskClick }) {
+export default function GroupList({ data, updateCurrentSelectedTaskClick }) {
   return (
     <div
       style={{
@@ -24,7 +24,7 @@ export default function GroupList({ data, handleTaskClick }) {
         marginLeft: "5px"
       }}
     >
-      {task(data, handleTaskClick)}
+      {task(data, updateCurrentSelectedTaskClick)}
     </div>
   );
 }

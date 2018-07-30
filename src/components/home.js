@@ -21,7 +21,7 @@ class Home extends React.Component {
           title: "Do thing at home",
           tasks: [
             { isDone: false, task: "fix kitchen sink" },
-            { isDone: false, task: "copy another key" },
+            { isDone: true, task: "copy another key" },
             { isDone: false, task: "buy grocery" }
           ]
         },
@@ -34,13 +34,24 @@ class Home extends React.Component {
       currentSelectedTask: []
     };
 
-    this.handleClick = this.handleClick.bind(this);
+    this.updateCurrentSelectedTask = this.updateCurrentSelectedTask.bind(this);
+    this.updateCheckBox = this.updateCheckBox.bind(this);
   }
   componentDidMount() {
     this.setState({ currentSelectedTask: this.state.data[0] });
   }
-  handleClick(data) {
+  updateCurrentSelectedTask(data) {
     this.setState({ currentSelectedTask: data });
+  }
+
+  updateCheckBox(data, index, tasks){
+    const items = this.state.data;
+
+    items[tasks.id].tasks[index].isDone = !data.isDone;
+    
+    this.setState({
+      data: items
+    });
   }
   render() {
     return (
@@ -55,8 +66,8 @@ class Home extends React.Component {
         >
           Task List
         </PageHeader>
-        <GroupList data={this.state.data} handleTaskClick={this.handleClick} />
-        <SingleList singleTaskList={this.state.currentSelectedTask} />
+        <GroupList data={this.state.data} updateCurrentSelectedTaskClick={this.updateCurrentSelectedTask} />
+        <SingleList singleTaskList={this.state.currentSelectedTask} updateCheckBox={this.updateCheckBox} />
       </React.Fragment>
     );
   }
