@@ -1,7 +1,8 @@
-import React from "react";
-import { PageHeader } from "react-bootstrap";
-import GroupList from "./groupList";
-import SingleList from "./singleList";
+import React from 'react';
+import { PageHeader } from 'react-bootstrap';
+import GroupList from './groupList';
+import SingleList from './singleList';
+import FormControlComponent from './formControl';
 
 class Home extends React.Component {
   constructor(props) {
@@ -10,24 +11,24 @@ class Home extends React.Component {
       data: [
         {
           id: 0,
-          title: "Do thing at work",
+          title: 'Do thing at work',
           tasks: [
-            { isDone: false, task: "schedule meeting for retro" },
-            { isDone: false, task: "deploy completed task to prod" }
+            { isDone: false, task: 'schedule meeting for retro' },
+            { isDone: false, task: 'deploy completed task to prod' }
           ]
         },
         {
           id: 1,
-          title: "Do thing at home",
+          title: 'Do thing at home',
           tasks: [
-            { isDone: false, task: "fix kitchen sink" },
-            { isDone: true, task: "copy another key" },
-            { isDone: false, task: "buy grocery" }
+            { isDone: false, task: 'fix kitchen sink' },
+            { isDone: true, task: 'copy another key' },
+            { isDone: false, task: 'buy grocery' }
           ]
         },
         {
           id: 2,
-          title: "Do thing at party",
+          title: 'Do thing at party',
           tasks: []
         }
       ],
@@ -36,6 +37,7 @@ class Home extends React.Component {
 
     this.updateCurrentSelectedTask = this.updateCurrentSelectedTask.bind(this);
     this.updateCheckBox = this.updateCheckBox.bind(this);
+    this.createTask = this.createTask.bind(this);
   }
   componentDidMount() {
     this.setState({ currentSelectedTask: this.state.data[0] });
@@ -48,24 +50,46 @@ class Home extends React.Component {
     const items = this.state.data;
 
     items[tasks.id].tasks[index].isDone = !data.isDone;
-    
+
     this.setState({
       data: items
     });
+  }
+
+  createTask(data){
+    if(data && data.length !== 0){
+      
+      let temp = this.state.data;
+      let task = {
+        id: this.state.data[this.state.data.length - 1].id + 1,
+        title: data,
+        tasks: [ ]
+      }
+      temp.push(task);
+      this.setState({
+        data: temp
+      })
+    }
+    
+
   }
   render() {
     return (
       <React.Fragment>
         <PageHeader
-          className="Page-header"
+          className='Page-header'
           style={{
-            textAlign: "center",
-            borderBottom: "solid",
-            marginTop: "15px"
+            textAlign: 'center',
+            borderBottom: 'solid',
+            marginTop: '15px'
           }}
         >
           Task List
         </PageHeader>
+        <FormControlComponent handleClick = {this.createTask} 
+                              formStyle = {{width: '29%', marginLeft: '5px', float: 'left'}}
+                              formGroupStyle={{ width: '74%', display: 'inline-block', marginRight: '5px'}}
+                              name = {'Create'} />       
         <GroupList data={this.state.data} updateCurrentSelectedTaskClick={this.updateCurrentSelectedTask} />
         <SingleList singleTaskList={this.state.currentSelectedTask} updateCheckBox={this.updateCheckBox} />
       </React.Fragment>

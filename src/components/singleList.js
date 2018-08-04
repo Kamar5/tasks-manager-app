@@ -1,12 +1,12 @@
-import React from "react";
-import { Panel, ListGroup, ListGroupItem, Checkbox } from "react-bootstrap";
+import React from 'react';
+import { Panel, ListGroup, ListGroupItem, Checkbox } from 'react-bootstrap';
 
 function tasks(singleTaskList,updateCheckBox) {
   return singleTaskList.tasks
     ? singleTaskList.tasks.map(function(data, index) {
-        return <ListGroupItem key={index} className = { data.isDone ? 'doneTask' : "" } ><Checkbox checked = {data.isDone} onChange={() => onChangeTask(data, index , singleTaskList,updateCheckBox)}><span>{data.task}</span></Checkbox></ListGroupItem>;
+        return <ListGroupItem key={index} className = { data.isDone ? 'doneTask' : '' } ><Checkbox checked = {data.isDone} onChange={() => onChangeTask(data, index , singleTaskList,updateCheckBox)}><span>{data.task}</span></Checkbox></ListGroupItem>;
       })
-    : "";
+    : '';
 }
 
 function onChangeTask(data, index, tasks,updateCheckBox){
@@ -17,9 +17,9 @@ export default function SingleList({ singleTaskList, updateCheckBox }) {
   return (
     <Panel
       style={{
-        width: "69%",
-        float: "right",
-        marginRight: "15px"
+        width: '68%',
+        float: 'right',
+        marginRight: '15px'
       }}
       onClick={() => {}}
     >

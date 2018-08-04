@@ -1,5 +1,5 @@
-import React from "react";
-import { Panel } from "react-bootstrap";
+import React from 'react';
+import { Panel } from 'react-bootstrap';
 
 function handleClick(data, updateCurrentSelectedTaskClick) {
   return updateCurrentSelectedTaskClick(data);
@@ -19,9 +19,10 @@ export default function GroupList({ data, updateCurrentSelectedTaskClick }) {
   return (
     <div
       style={{
-        width: "29%",
-        float: "left",
-        marginLeft: "5px"
+        width: '29%',
+        float: 'left',
+        marginLeft:  '-29%',
+        marginTop: '45px'
       }}
     >
       {task(data, updateCurrentSelectedTaskClick)}
