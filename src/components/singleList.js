@@ -1,5 +1,6 @@
 import React from 'react';
 import { Panel, ListGroup, ListGroupItem, Checkbox } from 'react-bootstrap';
+import FormControlComponent from './formControl';
 
 function tasks(singleTaskList,updateCheckBox) {
   return singleTaskList.tasks
@@ -13,7 +14,8 @@ function onChangeTask(data, index, tasks,updateCheckBox){
   return updateCheckBox(data, index, tasks)
 }
 
-export default function SingleList({ singleTaskList, updateCheckBox }) {
+
+export default function SingleList({ singleTaskList, updateCheckBox, addTask }) {
   return (
     <Panel
       style={{
@@ -23,7 +25,13 @@ export default function SingleList({ singleTaskList, updateCheckBox }) {
       }}
       onClick={() => {}}
     >
-      <Panel.Heading>{singleTaskList.title}</Panel.Heading>
+      <Panel.Heading>{singleTaskList.title} 
+        <FormControlComponent handleClick = {addTask} 
+                              formStyle = {{    display: 'inline', marginLeft: '58%'}}
+                              formGroupStyle={{ display: 'inline-block', marginRight: '5px', marginBottom: '5px'}}
+                              name = {'Add'}
+                              placeHolder = {'Enter task'} /> 
+      </Panel.Heading>
       <ListGroup>{tasks(singleTaskList,updateCheckBox)}</ListGroup>
     </Panel>
   );

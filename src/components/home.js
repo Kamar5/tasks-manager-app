@@ -38,6 +38,7 @@ class Home extends React.Component {
     this.updateCurrentSelectedTask = this.updateCurrentSelectedTask.bind(this);
     this.updateCheckBox = this.updateCheckBox.bind(this);
     this.createTask = this.createTask.bind(this);
+    this.addTask = this.addTask.bind(this);
   }
   componentDidMount() {
     this.setState({ currentSelectedTask: this.state.data[0] });
@@ -70,8 +71,14 @@ class Home extends React.Component {
         data: temp
       })
     }
-    
+  }
 
+  addTask(data){
+    if(data && data.length !== 0){
+      let temp = this.state.data
+      temp[this.state.currentSelectedTask.id].tasks.push({isDone: false, task: data});
+      this.setState({data: temp})
+    }
   }
   render() {
     return (
@@ -89,9 +96,10 @@ class Home extends React.Component {
         <FormControlComponent handleClick = {this.createTask} 
                               formStyle = {{width: '29%', marginLeft: '5px', float: 'left'}}
                               formGroupStyle={{ width: '74%', display: 'inline-block', marginRight: '5px'}}
-                              name = {'Create'} />       
+                              name = {'Create'}
+                              placeHolder = {'Enter task name'} />       
         <GroupList data={this.state.data} updateCurrentSelectedTaskClick={this.updateCurrentSelectedTask} />
-        <SingleList singleTaskList={this.state.currentSelectedTask} updateCheckBox={this.updateCheckBox} />
+        <SingleList singleTaskList={this.state.currentSelectedTask} updateCheckBox={this.updateCheckBox} addTask = {this.addTask}/>
       </React.Fragment>
     );
   }

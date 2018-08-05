@@ -30,7 +30,7 @@ export default class FormControlComponent extends React.Component {
             <FormControl
               type='text'
               value={this.state.value}
-              placeholder='Enter task name'
+              placeholder={this.props.placeHolder}
               onChange={this.handleChange}
             />
             <FormControl.Feedback />
