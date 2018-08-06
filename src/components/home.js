@@ -39,14 +39,18 @@ class Home extends React.Component {
     this.updateCheckBox = this.updateCheckBox.bind(this);
     this.createTask = this.createTask.bind(this);
     this.addTask = this.addTask.bind(this);
+    this.removeTask = this.removeTask.bind(this);
   }
   componentDidMount() {
     this.setState({ currentSelectedTask: this.state.data[0] });
   }
+
+  //shows the task seclected in the right side with more details
   updateCurrentSelectedTask(data) {
     this.setState({ currentSelectedTask: data });
   }
 
+  //change the checkbox value
   updateCheckBox(data, index, tasks){
     const items = this.state.data;
 
@@ -57,6 +61,7 @@ class Home extends React.Component {
     });
   }
 
+  //create to task with emty task
   createTask(data){
     if(data && data.length !== 0){
       
@@ -73,12 +78,19 @@ class Home extends React.Component {
     }
   }
 
+  //to add task to current opened task
   addTask(data){
     if(data && data.length !== 0){
       let temp = this.state.data
       temp[this.state.currentSelectedTask.id].tasks.push({isDone: false, task: data});
       this.setState({data: temp})
     }
+  }
+
+  removeTask(index){
+    var data = [...this.state.data];
+    data.splice(index, 1);
+    this.setState({data: data});
   }
   render() {
     return (
@@ -98,7 +110,9 @@ class Home extends React.Component {
                               formGroupStyle={{ width: '74%', display: 'inline-block', marginRight: '5px'}}
                               name = {'Create'}
                               placeHolder = {'Enter task name'} />       
-        <GroupList data={this.state.data} updateCurrentSelectedTaskClick={this.updateCurrentSelectedTask} />
+        <GroupList data={this.state.data} 
+                   updateCurrentSelectedTaskClick={this.updateCurrentSelectedTask}
+                   removeTask = {this.removeTask} />
         <SingleList singleTaskList={this.state.currentSelectedTask} updateCheckBox={this.updateCheckBox} addTask = {this.addTask}/>
       </React.Fragment>
     );

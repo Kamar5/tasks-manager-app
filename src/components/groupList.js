@@ -1,21 +1,26 @@
 import React from 'react';
-import { Panel } from 'react-bootstrap';
+import { Panel, Glyphicon } from 'react-bootstrap';
 
 function handleClick(data, updateCurrentSelectedTaskClick) {
   return updateCurrentSelectedTaskClick(data);
 }
 
-function task(task, updateCurrentSelectedTaskClick) {
+function removeItem(value, removeTask){
+  return removeTask(value);
+}
+
+function task(task, updateCurrentSelectedTaskClick, removeTask) {
   return task.map(function(value, index) {
     return (
-      <Panel onClick={() => handleClick(value, updateCurrentSelectedTaskClick)} key={index}>
-        <Panel.Body>{value.title}</Panel.Body>
+      <Panel key={index}>
+        <Panel.Body onClick={() => handleClick(value, updateCurrentSelectedTaskClick)} style={{width: '95%', display: 'inline-block'}}>{value.title}</Panel.Body>
+        <Glyphicon glyph='glyphicon glyphicon-remove' style={{color: 'red', cursor: 'pointer'}} onClick={()=> removeItem(index, removeTask)} />
       </Panel>
     );
   });
 }
 
-export default function GroupList({ data, updateCurrentSelectedTaskClick }) {
+export default function GroupList({ data, updateCurrentSelectedTaskClick, removeTask }) {
   return (
     <div
       style={{
@@ -25,7 +30,8 @@ export default function GroupList({ data, updateCurrentSelectedTaskClick }) {
         marginTop: '45px'
       }}
     >
-      {task(data, updateCurrentSelectedTaskClick)}
+      {task(data, updateCurrentSelectedTaskClick, removeTask)}
+      
     </div>
   );
 }
