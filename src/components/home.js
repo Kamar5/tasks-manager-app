@@ -66,7 +66,7 @@ export default class Home extends React.Component {
     if(data && data.length !== 0){
 
       let temp = this.state.data;
-      let setId = this.state.data.length === 0 ? 1 : this.state.data[this.state.data.length - 1].id + 1;
+      let setId = this.state.data.length === 0 ? 0 : this.state.data[this.state.data.length - 1].id + 1;
       let task = {
         id: setId,
         title: data,
@@ -83,6 +83,7 @@ export default class Home extends React.Component {
   addTask(data){
     if(data && data.length !== 0){
       let temp = this.state.data
+      console.log(this.state)
       temp[this.state.currentSelectedTask.id].tasks.push({isDone: false, task: data});
       this.setState({data: temp})
     }
