@@ -18,21 +18,17 @@ function onChangeTask(data, index, tasks,updateCheckBox){
 export default function SingleList({ singleTaskList, updateCheckBox, addTask }) {
   return (
     <Panel
-      style={{
-        width: '68%',
-        float: 'right',
-        marginRight: '15px'
-      }}
+      style={{ width: '68%', float: 'right', marginRight: '15px'}}
       onClick={() => {}}
     >
-      <Panel.Heading>{singleTaskList.title} 
+      <Panel.Heading style = {{height: '50px'}}><h5 style={{display: 'inline-block'}}>{singleTaskList.title}</h5> 
         <FormControlComponent handleClick = {addTask} 
-                              formStyle = {{    display: 'inline', marginLeft: '58%'}}
+                              formStyle = {{    display: 'inline', float: 'right', marginRight: '10px'}}
                               formGroupStyle={{ display: 'inline-block', marginRight: '5px', marginBottom: '5px'}}
                               name = {'Add'}
                               placeHolder = {'Enter task'} /> 
       </Panel.Heading>
-      <ListGroup>{tasks(singleTaskList,updateCheckBox)}</ListGroup>
+      {<ListGroup>{tasks(singleTaskList,updateCheckBox)}</ListGroup>}
     </Panel>
   );
 }

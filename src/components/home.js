@@ -32,7 +32,7 @@ export default class Home extends React.Component {
           tasks: []
         }
       ],
-      currentSelectedTask: []
+      currentSelectedTask: {}
     };
 
     this.updateCurrentSelectedTask = this.updateCurrentSelectedTask.bind(this);
@@ -89,10 +89,20 @@ export default class Home extends React.Component {
   }
 
   removeTask(index){
-    var data = [...this.state.data];
+
+    let data = [...this.state.data];
+    let removeCurrentSelection;
+
     data.splice(index, 1);
-    this.setState({data: data});
-  }
+    this.setState({data: data}, () => {
+      removeCurrentSelection = this.state.data.filter((item) => item.id === this.state.currentSelectedTask.id);
+
+      if(removeCurrentSelection.length === 0){
+        this.setState({currentSelectedTask: {}})      }
+    })
+
+   
+  }      
   render() {
     return (
       <React.Fragment>
@@ -114,7 +124,7 @@ export default class Home extends React.Component {
         <GroupList data={this.state.data} 
                    updateCurrentSelectedTaskClick={this.updateCurrentSelectedTask}
                    removeTask = {this.removeTask} />
-        <SingleList singleTaskList={this.state.currentSelectedTask} updateCheckBox={this.updateCheckBox} addTask = {this.addTask}/>
+        {this.state.currentSelectedTask.id !== undefined ? <SingleList singleTaskList={this.state.currentSelectedTask} updateCheckBox={this.updateCheckBox} addTask = {this.addTask}/>: ''}
       </React.Fragment>
     );
   }
