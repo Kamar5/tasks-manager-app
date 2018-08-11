@@ -4,7 +4,7 @@ import GroupList from './groupList';
 import SingleList from './singleList';
 import FormControlComponent from './formControl';
 
-class Home extends React.Component {
+export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -64,10 +64,11 @@ class Home extends React.Component {
   //create to task with emty task
   createTask(data){
     if(data && data.length !== 0){
-      
+
       let temp = this.state.data;
+      let setId = this.state.data.length === 0 ? 1 : this.state.data[this.state.data.length - 1].id + 1;
       let task = {
-        id: this.state.data[this.state.data.length - 1].id + 1,
+        id: setId,
         title: data,
         tasks: [ ]
       }
@@ -118,5 +119,3 @@ class Home extends React.Component {
     );
   }
 }
-
-export default Home;
