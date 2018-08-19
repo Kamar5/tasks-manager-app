@@ -1,26 +1,18 @@
 import React from 'react';
 import { Panel, Glyphicon } from 'react-bootstrap';
 
-function handleClick(data, updateCurrentSelectedTaskClick) {
-  return updateCurrentSelectedTaskClick(data);
-}
+export default function   ({ data, updateCurrentSelectedTaskClick, removeTask }) {
 
-function removeItem(value, removeTask){
-  return removeTask(value);
-}
-
-function task(task, updateCurrentSelectedTaskClick, removeTask) {
-  return task.map(function(value, index) {
-    return (
-      <Panel key={index}>
-        <Panel.Body onClick={() => handleClick(value, updateCurrentSelectedTaskClick)} style={{width: '95%', display: 'inline-block'}}>{value.title}</Panel.Body>
-        <Glyphicon glyph='glyphicon glyphicon-remove' style={{color: 'red', cursor: 'pointer'}} onClick={()=> removeItem(index, removeTask)} />
-      </Panel>
-    );
-  });
-}
-
-export default function GroupList({ data, updateCurrentSelectedTaskClick, removeTask }) {
+  function task() {
+    return data.map(function(value, index) {
+      return (
+        <Panel key={index}>
+          <Panel.Body onClick={() => updateCurrentSelectedTaskClick(value)} style={{width: '95%', display: 'inline-block'}}>{value.title}</Panel.Body>
+          <Glyphicon glyph='glyphicon glyphicon-remove' style={{color: 'red', cursor: 'pointer'}} onClick={()=> removeTask(index)} />
+        </Panel>
+      );
+    });
+  }
   return (
     <div
       style={{
@@ -30,7 +22,7 @@ export default function GroupList({ data, updateCurrentSelectedTaskClick, remove
         marginTop: '45px'
       }}
     >
-      {task(data, updateCurrentSelectedTaskClick, removeTask)}
+      {task(removeTask)}
       
     </div>
   );

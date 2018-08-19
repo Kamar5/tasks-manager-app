@@ -83,7 +83,6 @@ export default class Home extends React.Component {
   addTask(data){
     if(data && data.length !== 0){
       let temp = this.state.data
-      console.log(this.state)
       temp[this.state.currentSelectedTask.id].tasks.push({isDone: false, task: data});
       this.setState({data: temp})
     }

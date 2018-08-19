@@ -13,13 +13,17 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "test-coverage": "react-scripts test --env=jsdom --coverage --collectCoverageFrom=src/components/*.js ",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {
+    "enzyme": "^3.4.4",
+    "enzyme-adapter-react-16": "^1.2.0",
     "eslint": "^5.2.0",
     "eslint-plugin-react": "^7.10.0",
-    "gh-pages": "^1.2.0"
+    "gh-pages": "^1.2.0",
+    "react-test-renderer": "^16.4.2"
   }
 }
