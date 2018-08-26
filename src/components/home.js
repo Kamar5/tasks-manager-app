@@ -50,7 +50,7 @@ export default class Home extends React.Component {
   updateCheckBox(data, index, tasks){
     const items = this.state.data;
 
-    items[tasks.id].tasks[index].isDone = !data.isDone;
+    items.find(task => task.id === this.state.currentSelectedTask.id).tasks[index].isDone = !data.isDone
 
     this.setState({
       data: items
@@ -79,9 +79,9 @@ export default class Home extends React.Component {
   addTask(data){
     
     if(data && data.length !== 0){
-      let temp = this.state.data
-      temp[this.state.currentSelectedTask.id].tasks.push({isDone: false, task: data});
-      this.setState({data: temp})
+      let temp = this.state.data;
+      temp.find(task => task.id === this.state.currentSelectedTask.id).tasks.push({isDone: false, task: data});
+      this.setState({data: temp});
     }
   }
 
