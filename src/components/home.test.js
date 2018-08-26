@@ -2,10 +2,10 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { PageHeader } from 'react-bootstrap';
 
-import Home from '../home';
-import GroupList from '../groupList';
-import SingleList from '../singleList';
-import FormControlComponent from '../formControl';
+import Home from './home';
+import GroupList from './groupList';
+import SingleList from './singleList';
+import FormControlComponent from './formControl';
 
 describe('home', () => {
     const wrapper = shallow(<Home />)

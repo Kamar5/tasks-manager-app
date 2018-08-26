@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import FormControlComponent from '../formControl';
+import FormControlComponent from './formControl';
 
 describe('from contorl', () => {
     it('renders without crashing', () => {

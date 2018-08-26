@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import SingleList from '../singleList';
+import SingleList from './singleList';
 
 describe('single list', () => {
 let currentTask = {

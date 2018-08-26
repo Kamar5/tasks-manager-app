@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import GroupList from '../groupList';
+import GroupList from './groupList';
 import { Panel, Glyphicon } from 'react-bootstrap';
 
 describe('group list', () => {
