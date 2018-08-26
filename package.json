@@ -5,6 +5,7 @@
   "homepage": "http://kamar5.github.io/tasks-manager-app",
   "dependencies": {
     "react": "^16.4.1",
+    "react-autobind": "^1.0.6",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.1",
     "react-scripts": "1.1.4"

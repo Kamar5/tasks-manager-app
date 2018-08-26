@@ -3,6 +3,7 @@ import { PageHeader } from 'react-bootstrap';
 import GroupList from './groupList';
 import SingleList from './singleList';
 import FormControlComponent from './formControl';
+import autoBind from 'react-autobind';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -34,12 +35,7 @@ export default class Home extends React.Component {
       ],
       currentSelectedTask: {}
     };
-
-    this.updateCurrentSelectedTask = this.updateCurrentSelectedTask.bind(this);
-    this.updateCheckBox = this.updateCheckBox.bind(this);
-    this.createTask = this.createTask.bind(this);
-    this.addTask = this.addTask.bind(this);
-    this.removeTask = this.removeTask.bind(this);
+    autoBind(this);
   }
   componentDidMount() {
     this.setState({ currentSelectedTask: this.state.data[0] });
@@ -81,6 +77,7 @@ export default class Home extends React.Component {
 
   //to add task to current opened task
   addTask(data){
+    
     if(data && data.length !== 0){
       let temp = this.state.data
       temp[this.state.currentSelectedTask.id].tasks.push({isDone: false, task: data});
@@ -98,14 +95,15 @@ export default class Home extends React.Component {
       removeCurrentSelection = this.state.data.filter((item) => item.id === this.state.currentSelectedTask.id);
 
       if(removeCurrentSelection.length === 0){
-        this.setState({currentSelectedTask: {}})      }
+        this.setState({currentSelectedTask: {}}) 
+      }
     })
 
    
   }      
   render() {
     return (
-      <React.Fragment>
+    <React.Fragment>
         <PageHeader
           className='Page-header'
           style={{
