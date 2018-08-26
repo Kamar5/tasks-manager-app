@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "http://kamar5.github.io/tasks-manager-app",
   "dependencies": {
+    "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-autobind": "^1.0.6",
     "react-bootstrap": "^0.32.1",

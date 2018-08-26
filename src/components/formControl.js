@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FormGroup, FormControl, Button } from 'react-bootstrap';
 
 export default class FormControlComponent extends React.Component {
@@ -40,3 +41,11 @@ export default class FormControlComponent extends React.Component {
       );
     }
   }
+
+  FormControlComponent.propTypes = {
+    placeHolder: PropTypes.string,
+    formStyle: PropTypes.object,
+    handleClick: PropTypes.func,
+    formGroupStyle: PropTypes.object,
+    name: PropTypes.string
+  };

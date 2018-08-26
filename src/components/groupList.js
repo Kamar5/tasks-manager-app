@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Panel, Glyphicon } from 'react-bootstrap';
 
-export default function   ({ data, updateCurrentSelectedTaskClick, removeTask }) {
+export default function GroupList({ data, updateCurrentSelectedTaskClick, removeTask }) {
 
   function task() {
     return data.map(function(value, index) {
@@ -27,3 +28,9 @@ export default function   ({ data, updateCurrentSelectedTaskClick, removeTask })
     </div>
   );
 }
+
+GroupList.propTypes = {
+  data: PropTypes.array,
+  updateCurrentSelectedTaskClick: PropTypes.func,
+  removeTask: PropTypes.func
+};

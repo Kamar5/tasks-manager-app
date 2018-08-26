@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Panel, ListGroup, ListGroupItem, Checkbox } from 'react-bootstrap';
 import FormControlComponent from './formControl';
 
@@ -28,3 +29,9 @@ export default function SingleList({ singleTaskList, updateCheckBox, addTask }) 
     </Panel>
   );
 }
+
+SingleList.propTypes = {
+  singleTaskList: PropTypes.object,
+  updateCheckBox: PropTypes.func,
+  addTask: PropTypes.func
+};
