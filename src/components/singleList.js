@@ -8,7 +8,7 @@ export default function SingleList({ singleTaskList, updateCheckBox, addTask }) 
   function tasks() {
     return singleTaskList.tasks
       ? singleTaskList.tasks.map(function(data, index) {
-          return <ListGroupItem key={index} className = { data.isDone ? 'doneTask' : '' } ><Checkbox checked = {data.isDone} onChange={() => updateCheckBox(data, index , singleTaskList)}><span>{data.task}</span></Checkbox></ListGroupItem>;
+          return <ListGroupItem key={index} className = { data.isDone ? 'doneTask' : '' } ><Checkbox checked = {data.isDone} onChange={() => updateCheckBox(data, index)}><span>{data.task}</span></Checkbox></ListGroupItem>;
         })
       : '';
   }

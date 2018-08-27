@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import FormControlComponent from './formControl';
 
 describe('from contorl', () => {
@@ -8,8 +8,15 @@ describe('from contorl', () => {
         expect(wrapper.length).toBe(1);
     });
 
-    it('headle click function', () => {
-        const wrapper = mount(<FormControlComponent handleClick = {(data)=>{return data}} />);
-        expect(wrapper.props().handleClick('google')).toBe('google');
+    it('should handle click function', () => {
+        const wrapper = shallow(<FormControlComponent handleClick = {(data)=>{return data}} />);
+        wrapper.instance().handleClick();        
+        expect(wrapper.state().value).toBe('');
+    });
+    it('should handle change function', () => {
+        const wrapper = shallow(<FormControlComponent />);
+        const tempObject = { target: { value: 'test'}};
+        wrapper.instance().handleChange(tempObject);        
+        expect(wrapper.state().value).toBe('test');
     });
 });
