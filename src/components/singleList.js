@@ -25,7 +25,7 @@ export default function SingleList({ singleTaskList, updateCheckBox, addTask }) 
                               name = {'Add'}
                               placeHolder = {'Enter task'} /> 
       </Panel.Heading>
-      {<ListGroup>{tasks(singleTaskList,updateCheckBox)}</ListGroup>}
+      {<ListGroup>{tasks()}</ListGroup>}
     </Panel>
   );
 }

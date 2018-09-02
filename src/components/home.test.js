@@ -52,8 +52,23 @@ describe('creating new task', () => {
     
     it('should have 0 tasks to do with checkbox', () => {
         expect(wrapper2.state().data[3].tasks.length).toBe(0);
-    })
+    });
+    const wrapper21 = shallow(<Home />)
+    wrapper21.instance().createTask('')
+    it('should not create task if nothing pass to createtask function', () => {
+        expect(wrapper21.state().data.length).toBe(3);
+    });
 
+    it('should have add and made the id 0 if there is no tasks in grouplist', () => {
+        const wrapper22 = shallow(<Home />)
+        wrapper22.instance().removeTask(2)
+        wrapper22.instance().removeTask(1)
+        wrapper22.instance().removeTask(0)
+        wrapper22.instance().createTask('sdsdsd');
+        expect(wrapper22.state().data.length).toBe(1);
+        expect(wrapper22.state().data[0].title).toBe('sdsdsd');
+        expect(wrapper22.state().data[0].id).toBe(0);    
+    })
 });
 
 describe('select another task', () => {
@@ -116,12 +131,19 @@ describe('add todo task to current task', () => {
 
     it('should have 3 todo task inside current task', () => {
         expect(wrapper7.state().currentSelectedTask.tasks.length).toBe(3);
-    })
+    });
     it('should have the todo task name inside current task', () =>{
         expect(wrapper7.state().currentSelectedTask.tasks[2].task).toBe('new to do');
-    })
+    });
     it('should have uncheck for the checkbox for new todo task', () =>{
         expect(wrapper7.state().currentSelectedTask.tasks[2].isDone).toBe(false);
-    })
+    });
+
+    const wrapper71 = shallow(<Home />)
+    wrapper71.instance().addTask('');
+
+    it('should not add task if nothing passed', () => {
+        expect(wrapper71.state().currentSelectedTask.tasks.length).toBe(2);
+    });
 
 });
